@@ -1,0 +1,110 @@
+﻿@model Auction.Models.ZillowModel.ZillowEstimate
+
+
+@{
+    ViewBag.Title = "Details";
+    var googleApiId = "AIzaSyBJTntA6I2kn3Y3wC17WECYAsLViTT8QSg";
+    var compLink = Model.LinktoComparables;
+    var detailsLink = Model.LinktoHomeDetails;
+    var mapLink = Model.LinktoMap;
+
+    var GoogleImage = String.Format("https://maps.googleapis.com/maps/api/streetview?size=400x400&location={1},{2}&fov=90&heading=235&pitch=10&key={0}", googleApiId, Model.Latitude, Model.Longitude);
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Property Details</h4>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <img src=@GoogleImage alt=" @Html.DisplayFor(model => model.Street)" />
+        </div>
+        <div class="col-sm-4 ">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Street)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Street)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ZipCode)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ZipCode)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Estimate)
+                </dt>
+
+                <dd>
+                    @String.Format("{0:c}", Html.DisplayFor(model => model.Estimate))
+                </dd>
+
+                <dt>
+                    @String.Format("{0:c}", Html.DisplayNameFor(model => model.ValueRangeLow))
+                </dt>
+
+                <dd>
+                    @String.Format("{0:c}", Html.DisplayFor(model => model.ValueRangeLow))
+                </dd>
+                <dt>
+                    @String.Format("{0:c}", Html.DisplayNameFor(model => model.ValueRangeHigh))
+                </dt>
+
+                <dd>
+                    @String.Format("{0:c}", Html.DisplayFor(model => model.ValueRangeHigh))
+                </dd>
+            </dl>
+
+        </div>
+        <div class="col-sm-2 ">
+            <button class="btn btn-primary" onclick="location.href='@compLink';return false;">Get Comparables</button>
+            <button class="btn btn-primary" onclick="location.href='@detailsLink';return false;">Get Details</button>
+            <button class="btn btn-primary" onclick="location.href='@mapLink';return false;">Get Map</button>
+
+        </div>
+        </div>
+    </div>
+<p>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Home")'">Back to List</button>
+
+</p>
+
+<!-- The Modal -->
+        @*<div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>*@
+
+
+
+        @*<script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg');
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById('myImg');
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = document.getElementById('myImg');
+        }
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+    </script>*@

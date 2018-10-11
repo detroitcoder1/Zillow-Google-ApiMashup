@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Auction.Models.ZillowModel.ZillowEstimate>
+
+
+@{
+    ViewBag.Title = "City of Detroit Auction";
+
+}
+
+
+<h2>City of Detroit Auction Mashup</h2>
+
+<p>
+    @using (Html.BeginForm("Filter", "CityNodes", FormMethod.Post))
+    {
+        @*@Html.DropDownList("mytype", EnumHelper.GetSelectList(typeof(DetroitAuction.Models.ItemTypes)), "SelectType")*@
+        @Html.DisplayNameFor(model => model.ZipCode)
+        @Html.TextBox("ZipCode")
+
+
+        <input type="submit" value="Filter" class="btn btn-default" />
+    }
+
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            Estimated Value
+        </th>
+
+        <th>High Value Range</th>
+
+        <th>Low Value Range</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+
+                @*<img src=@Html.DisplayFor(modelItem => item.GoogleUrl) alt=" @Html.DisplayFor(modelItem => item.Street)" />*@
+                <div id="myImg"><img src="@Url.Content(item.GoogleUrl)" alt="@Html.DisplayFor(modelItem => item.Street)"></div>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @String.Format("{0:C}", Html.DisplayFor(modelItem => item.Estimate))
+            </td>
+
+            <td>
+                @String.Format("{0:C}", Html.DisplayFor(modelItem => item.ValueRangeHigh))
+            </td>
+            <td>
+                @String.Format("{0:C}", Html.DisplayFor(modelItem => item.ValueRangeLow))
+            </td>
+            <td>
+                @*  @Html.ActionLink("More Info", "Details", new { id = item.ZillowId }, new { htmlAttributes = new { @class = "btn-btn default" } })*@
+
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", "CityNodes", new { id = item.ZillowId })'">More Info</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById('myImg');
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById('myImg');
+    img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+</script>

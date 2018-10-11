@@ -1,0 +1,2 @@
+C:\Users\Curt\source\repos\DetroitAuction\DetroitAuction.Tests\obj\Debug\DetroitAuction.Tests.csprojAssemblyReference.cache
+C:\Users\Curt\source\repos\DetroitAuction\DetroitAuction.Tests\obj\Debug\DetroitAuction.Tests.csproj.CoreCompileInputs.cache
