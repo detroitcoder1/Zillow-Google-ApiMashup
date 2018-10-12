@@ -10,7 +10,7 @@ namespace Auction.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Index","CityNodes");
+            return View();
         }
 
         public ActionResult About()

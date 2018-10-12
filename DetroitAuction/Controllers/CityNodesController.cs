@@ -31,7 +31,7 @@ namespace Auction.Controllers
 
 
 
-
+        [Authorize]
         public ActionResult Details(int id)
         {
             var z = GetZillowModel();

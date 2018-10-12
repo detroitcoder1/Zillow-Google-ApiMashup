@@ -1,31 +1,331 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    Layout = Layout = "~/Views/Shared/_LayoutHome.cshtml"; ;
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<!-- Loader -->
+<div class="loader">
+    <div class="loader-img"></div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<!-- Top content -->
+<div class="top-content">
+
+    <!-- Top menu -->
+    @*<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            
+            <div class="collapse navbar-collapse" id="top-navbar-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="scroll-link" href="#features">The project</a></li>
+                    <li><a class="scroll-link" href="#how-it-works">How it'll work</a></li>
+                    <li><a class="scroll-link" href="#about-us">About</a></li>
+                    <li><a class="scroll-link" href="#testimonials">Testimonials</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>*@
+
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1 class="wow fadeInLeftBig">Wayne County Property Auction Coming <strong>Soon</strong></h1>
+                    <div class="description wow fadeInLeftBig">
+                        <p>
+                            We are working very hard on the new version of our site. It will bring a lot of new features.
+                            Sign up from the form below and you'll be one of the first to know when the site is ready.
+                        </p>
+                    </div>
+                    <div class="timer wow fadeInUp">
+                        <div class="days-wrapper">
+                            <span class="days"></span> <br><span class="t-text">days</span>
+                        </div>
+                        <div class="hours-wrapper">
+                            <span class="hours"></span> <br><span class="t-text">hours</span>
+                        </div>
+                        <div class="minutes-wrapper">
+                            <span class="minutes"></span> <br><span class="t-text">minutes</span>
+                        </div>
+                        <div class="seconds-wrapper">
+                            <span class="seconds"></span> <br><span class="t-text">seconds</span>
+                        </div>
+                    </div>
+                    <div class="subscribe wow fadeInUp">
+                        <div class="form-inline">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "CityNodes")'">Browse Properties for Sale</button>
+                        </div>
+                        <div class="success-message"></div>
+                        <div class="error-message"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+</div>
+
+<!-- About the new site -->
+<div class="features-container section-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 features section-description wow fadeIn">
+                <h2>About the Wayne County Auction</h2>
+                <div class="divider-1 wow fadeInUp"><span></span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 features-box features-box-gray wow fadeInUp">
+                <div class="features-box-icon">
+                    <span aria-hidden="true" class="typcn typcn-eye-outline"></span>
+                </div>
+                <h3>Info</h3>
+                <p>Properties listed in this auction were foreclosed by the Wayne County Treasurer under the Michigan General Property Tax Act</p>
+            </div>
+            <div class="col-sm-4 features-box wow fadeInDown">
+                <div class="features-box-icon">
+                    <span aria-hidden="true" class="typcn typcn-thumbs-ok"></span>
+                </div>
+                <h3>Why Register</h3>
+                <p>
+                    To view an individual property click on ‘Search’ at the top of the page. In order to download a full/partial property list, you must first register.
+                </p>
+            </div>
+            <div class="col-sm-4 features-box features-box-gray wow fadeInUp">
+                <div class="features-box-icon">
+                    <span aria-hidden="true" class="typcn typcn-cog-outline"></span>
+                </div>
+                <h3>How to Bid</h3>
+                <p>To bid on one property, a deposit of $1,000.00 with a registration fee of $35.00 is required. To bid on more than one property a deposit of $10,000.00 with a registration fee of $35.00 is required. </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 features-box wow fadeInUp">
+                <div class="features-box-icon">
+                    <span aria-hidden="true" class="typcn typcn-device-phone"></span>
+                </div>
+                <h3>Wayne County Contact Info</h3>
+                <p>
+                    If you have any questions about the bidding rules Wayne County via email: support@waynecountytreasurermi.com
+                    You may also call our Customer Service number at (313) 224-2864.
+                </p>
+            </div>
+            <div class="col-sm-4 features-box features-box-gray wow fadeInDown">
+                <div class="features-box-icon">
+                    <span aria-hidden="true" class="typcn-cog-outline"></span>
+                </div>
+                <h3>When</h3>
+                <p>Batches start closing from October 23, 2018 through October 24, 2018 (9.00 a.m. E.T. to 4.00 p.m. E.T. – One batch will close every 15 minutes). </p>
+            </div>
+            <div class="col-sm-4 features-box wow fadeInUp">
+                <div class="features-box-icon">
+                    <span aria-hidden="true" class="typcn typcn-group-outline"></span>
+                </div>
+                <h3>You Should know</h3>
+                <p>State law mandates that a deed will not be issued unless the buyer signs an affidavit that he/she does not have outstanding property taxes, and does not have unpaid civil fines for a violation of a local ordinance, including blight violations.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 section-bottom-button wow fadeInUp">
+                <a class="btn btn-link-1 scroll-link" href="https://www.waynecountytreasurermi.com/Home.aspx">Register With Wayne County</a>
+            </div>
+        </div>
     </div>
 </div>
+
+
+<!-- About us -->
+<div class="about-us-container section-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 about-us section-description wow fadeIn">
+                <h2>Sponsored By</h2>
+                <div class="divider-1 wow fadeInUp"><span></span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 about-us-box wow fadeInUp">
+                <div class="about-us-photo">
+                    <img src="~/assets/img/about/1.jpg" alt="" data-at2x="~/assets/img/about/1.jpg">
+                    <div class="about-us-role">Sherman Williams</div>
+                </div>
+                <h3>Detroit City Paint</h3>
+                <p>Offering a full range of paint and paint supplies.</p>
+                <div class="about-us-social">
+                    <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+                    <a href="#"><span class="typcn typcn-social-dribbble"></span></a>
+                    <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+                </div>
+            </div>
+            <div class="col-sm-4 about-us-box wow fadeInDown">
+                <div class="about-us-photo">
+                    <img src="~/assets/img/about/2.jpg" alt="" data-at2x="~/assets/img/about/2.jpg">
+                    <div class="about-us-role">Realtor</div>
+                </div>
+                <h3>Client Access Realty</h3>
+                <p>Specializing in the Detroit Real Estate</p>
+                <div class="about-us-social">
+                    <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+                    <a href="#"><span class="typcn typcn-social-dribbble"></span></a>
+                    <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+                </div>
+            </div>
+            <div class="col-sm-4 about-us-box wow fadeInUp">
+                <div class="about-us-photo">
+                    <img src="~/assets/img/about/3.jpg" alt="" data-at2x="~/assets/img/about/3.jpg">
+                    <div class="about-us-role">Clean Outs</div>
+                </div>
+                <h3>Hill Cleaning Services</h3>
+                <p>Bulk Removal interior and exterior</p>
+                <div class="about-us-social">
+                    <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+                    <a href="#"><span class="typcn typcn-social-dribbble"></span></a>
+                    <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to action -->
+@*<div class="call-to-action-container section-container section-container-image-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 call-to-action section-description wow fadeInLeftBig">
+                <h2>Call to action</h2>
+                <div class="divider-1 wow fadeInUp"><span></span></div>
+                <p>
+                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
+                    aliquip ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 section-bottom-button wow fadeInUp">
+                <a class="btn btn-link-1 scroll-link" href="#top-content">Subscribe Now</a>
+            </div>
+        </div>
+    </div>
+</div>*@
+<!-- Testimonials -->
+@*<div class="testimonials-container section-container section-container-gray-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 testimonials section-description wow fadeIn">
+                <h2>Our clients</h2>
+                <div class="divider-1 wow fadeInUp"><span></span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1 testimonial-list wow fadeInUp">
+                <div role="tabpanel">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="tab1">
+                            <div class="testimonial-image">
+                                <img src="~/assets/img/testimonials/1.jpg" alt="" data-at2x="~/assets/img/testimonials/1.jpg">
+                                <div class="testimonial-icon">
+                                    <span aria-hidden="true" class="typcn typcn-pin"></span>
+                                </div>
+                            </div>
+                            <div class="testimonial-text">
+                                <p>
+                                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+                                    Lorem ipsum dolor sit amet, consectetur..."<br>
+                                    <a href="#">Lorem Ipsum, dolor.co.uk</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab2">
+                            <div class="testimonial-image">
+                                <img src="~/assets/img/testimonials/2.jpg" alt="" data-at2x="~/assets/img/testimonials/2.jpg">
+                                <div class="testimonial-icon">
+                                    <span aria-hidden="true" class="typcn typcn-pin"></span>
+                                </div>
+                            </div>
+                            <div class="testimonial-text">
+                                <p>
+                                    "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
+                                    ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                                    lobortis nisl ut aliquip ex ea commodo consequat..."<br>
+                                    <a href="#">Minim Veniam, nostrud.com</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab3">
+                            <div class="testimonial-image">
+                                <img src="~/assets/img/testimonials/3.jpg" alt="" data-at2x="~/assets/img/testimonials/3.jpg">
+                                <div class="testimonial-icon">
+                                    <span aria-hidden="true" class="typcn typcn-pin"></span>
+                                </div>
+                            </div>
+                            <div class="testimonial-text">
+                                <p>
+                                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+                                    Lorem ipsum dolor sit amet, consectetur..."<br>
+                                    <a href="#">Lorem Ipsum, dolor.co.uk</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab4">
+                            <div class="testimonial-image">
+                                <img src="~/assets/img/testimonials/4.jpg" alt="" data-at2x="~/assets/img/testimonials/4.jpg">
+                                <div class="testimonial-icon">
+                                    <span aria-hidden="true" class="typcn typcn-pin"></span>
+                                </div>
+                            </div>
+                            <div class="testimonial-text">
+                                <p>
+                                    "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
+                                    ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                                    lobortis nisl ut aliquip ex ea commodo consequat..."<br>
+                                    <a href="#">Minim Veniam, nostrud.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab"></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab"></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<!-- Footer -->
+@*<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 footer-social">
+                <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+                <a href="#"><span class="typcn typcn-social-dribbble"></span></a>
+                <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+                <a href="#"><span class="typcn typcn-social-google-plus"></span></a>
+                <a href="#"><span class="typcn typcn-social-instagram"></span></a>
+                <a href="#"><span class="typcn typcn-social-pinterest"></span></a>
+            </div>
+        </div>
+    </div>
+</footer>*@

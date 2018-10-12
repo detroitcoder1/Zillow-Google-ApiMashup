@@ -9,23 +9,25 @@
 
 <h2>City of Detroit Auction Mashup</h2>
 
-<p>
+<div class=" row">
     @using (Html.BeginForm("Filter", "CityNodes", FormMethod.Post))
     {
         @*@Html.DropDownList("mytype", EnumHelper.GetSelectList(typeof(DetroitAuction.Models.ItemTypes)), "SelectType")*@
-        @Html.DisplayNameFor(model => model.ZipCode)
-        @Html.TextBox("ZipCode") 
-        
+        <h3>Search by ZipCode</h3>
+        <span>
+            @Html.TextBox("ZipCode")
+            <input type="submit" value="Search" class="btn btn-default" />
+            <br/>
+        </span>
 
-<input type="submit" value="Filter" class="btn btn-default" />
-}
+    }
+</div>
+<br/>
 
-
-</p>
 <table class="table">
     <tr>
         <th>
-          
+
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Street)
@@ -40,9 +42,9 @@
             Estimated Value
         </th>
 
-        <th>High Value Range</th>
+        <th>High Value</th>
 
-        <th>Low Value Range</th>
+        <th>Low Value</th>
         <th></th>
     </tr>
 
@@ -50,10 +52,10 @@
     {
         <tr>
             <td>
-                
-                    @*<img src=@Html.DisplayFor(modelItem => item.GoogleUrl) alt=" @Html.DisplayFor(modelItem => item.Street)" />*@
-                    <div id="myImg"><img src="@Url.Content(item.GoogleUrl)" alt="@Html.DisplayFor(modelItem => item.Street)"></div>
-               
+
+                @*<img src=@Html.DisplayFor(modelItem => item.GoogleUrl) alt=" @Html.DisplayFor(modelItem => item.Street)" />*@
+                <div id="myImg"><img src="@Url.Content(item.GoogleUrl)" alt="@Html.DisplayFor(modelItem => item.Street)"></div>
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Street)
@@ -75,7 +77,7 @@
                 @String.Format("{0:C}", Html.DisplayFor(modelItem => item.ValueRangeLow))
             </td>
             <td>
-              @*  @Html.ActionLink("More Info", "Details", new { id = item.ZillowId }, new { htmlAttributes = new { @class = "btn-btn default" } })*@
+                @*  @Html.ActionLink("More Info", "Details", new { id = item.ZillowId }, new { htmlAttributes = new { @class = "btn-btn default" } })*@
 
                 <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", "CityNodes", new { id = item.ZillowId })'">More Info</button>
             </td>
