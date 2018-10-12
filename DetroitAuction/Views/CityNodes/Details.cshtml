@@ -8,20 +8,61 @@
     var detailsLink = Model.LinktoHomeDetails;
     var mapLink = Model.LinktoMap;
 
-    var GoogleImage = String.Format("https://maps.googleapis.com/maps/api/streetview?size=400x400&location={1},{2}&fov=90&heading=235&pitch=10&key={0}", googleApiId, Model.Latitude, Model.Longitude);
-
+    //var GoogleImage = String.Format("https://maps.googleapis.com/maps/api/streetview?size=400x400&location={1},{2}&fov=90&heading=235&pitch=10&key={0}", googleApiId, Model.Latitude, Model.Longitude);
+    var GoogleURL = String.Format("https://maps.googleapis.com/maps/api/js?key={0}&callback=initMap", googleApiId);
+    Layout = Layout = null;
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Property Details</h4>
-
-    <div class="row">
-        <div class="col-md-5">
-            <img src=@GoogleImage alt=" @Html.DisplayFor(model => model.Street)" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Directly Accessing Street View Data</title>
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link href="~/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/assets/bootstrap/js/bootstrap.js"></script>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 50%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Detroit Auction", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
         </div>
-        <div class="col-md-5 ">
+    </div>
+           <div class="row"> <h1>Details</h1></div>
+    <div id="pano" style="width: 50%; height: 50%;float:left"></div>
+    <div id="map" style="width: 50%; height: 50%;float:left"></div>
+    <div class="row">
+
+        <div class="col-md-4  col-lg-offset-4">
+            <h4>Property Details</h4>
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.Street)
@@ -63,63 +104,86 @@
                 </dd>
 
                 <dt>
-                    Date Last Update
+                    Last Updated
                 </dt>
 
                 <dd>
-                    @String.Format("{0:c}", Html.DisplayFor(model => model.LastUpdated))
-                </dd>
-
-                <dt>
-                   Value Change $
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ValueChange)
+                    @Html.DisplayFor(model => model.LastUpdated)
                 </dd>
             </dl>
 
         </div>
-        <div class="col-md-2 " style=" margin-bottom: 10px;">
-            <div><button class="btn btn-primary " onclick="location.href='@compLink';return false;">Get Comparables</button></div>
-            <div class=" btn-space"><button class="btn btn-primary " onclick="location.href='@detailsLink';return false;">Get Details</button></div>
-            <div><button class="btn btn-primary btn-space " onclick="location.href='@mapLink';return false;">Get Map</button></div>
-        </div>
+        <div class="row col-md-12 " style=" margin-bottom: 10px;">
+            <span><button class="btn btn-primary " onclick="location.href='@compLink';return false;">Get Comparables</button></span>
+            <span class=" btn-space"><button class="btn btn-primary " onclick="location.href='@detailsLink';return false;">More Details</button></span>
+            <span class=" btn-space"><button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "CityNodes")'">Back to List</button></span>
         </div>
     </div>
-<p>
-    <button class="btn btn-primary btn-space" onclick="location.href='@Url.Action("Index", "Home")'">Back to List</button>
 
-</p>
+    <script>
+        /*
+         * Click the map to set a new location for the Street View camera.
+         */
 
-<!-- The Modal -->
-        @*<div id="myModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="img01">
-        <div id="caption"></div>
-    </div>*@
+        var map;
+        var panorama;
 
+        function initMap() {
+            var berkeley = { lat: @Model.Latitude, lng: @Model.Longitude };
+            var sv = new google.maps.StreetViewService();
 
+            panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'));
 
-        @*<script>
-        // Get the modal
-        var modal = document.getElementById('myModal');
+            // Set up the map.
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: berkeley,
+                zoom: 16,
+                streetViewControl: false
+            });
 
-        // Get the image and insert it inside the modal - use its "alt" text as a caption
-        var img = document.getElementById('myImg');
-        var modalImg = document.getElementById("img01");
-        var captionText = document.getElementById('myImg');
-        img.onclick = function () {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = document.getElementById('myImg');
+            // Set the initial Street View camera to the center of the map
+            sv.getPanorama({ location: berkeley, radius: 50 }, processSVData);
+
+            // Look for a nearby Street View panorama when the map is clicked.
+            // getPanorama will return the nearest pano when the given
+            // radius is 50 meters or less.
+            map.addListener('click', function (event) {
+                sv.getPanorama({ location: event.latLng, radius: 50 }, processSVData);
+            });
         }
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+        function processSVData(data, status) {
+            if (status === 'OK') {
+                var marker = new google.maps.Marker({
+                    position: data.location.latLng,
+                    map: map,
+                    title: data.location.description
+                });
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
+                panorama.setPano(data.location.pano);
+                panorama.setPov({
+                    heading: 270,
+                    pitch: 0
+                });
+                panorama.setVisible(true);
+
+                marker.addListener('click', function () {
+                    var markerPanoID = data.location.pano;
+                    // Set the Pano to use the passed panoID.
+                    panorama.setPano(markerPanoID);
+                    panorama.setPov({
+                        heading: 270,
+                        pitch: 0
+                    });
+                    panorama.setVisible(true);
+                });
+            } else {
+                console.error('Street View data not found for this location.');
+            }
         }
-    </script>*@
+    </script>
+    <script async defer
+            src=@GoogleURL>
+    </script>
+</body>
+</html>

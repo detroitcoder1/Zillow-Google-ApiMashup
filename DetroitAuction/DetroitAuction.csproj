@@ -256,6 +256,7 @@
     <Content Include="assets\img\testimonials\3.jpg" />
     <Content Include="assets\img\testimonials\4.jpg" />
     <Content Include="assets\img\testimonials\logo%402x.png" />
+    <Content Include="assets\js\GoogleStreetView.js" />
     <Content Include="assets\js\jquery-1.11.1.js" />
     <Content Include="assets\js\jquery-1.11.1.min.js" />
     <Content Include="assets\js\jquery.backstretch.js" />
@@ -353,6 +354,7 @@
     <Content Include="Views\CityNodes\Index.cshtml" />
     <Content Include="Views\CityNodes\Filter.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\CityNodes\Details2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
