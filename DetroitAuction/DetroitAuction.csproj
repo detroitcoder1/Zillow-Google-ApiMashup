@@ -237,8 +237,8 @@
     <Content Include="assets\ico\apple-touch-icon-72-precomposed.png" />
     <Content Include="assets\ico\favicon.png" />
     <Content Include="assets\img\about\2.jpg" />
-    <Content Include="assets\img\about\1.jpg" />
     <Content Include="assets\img\about\3.jpg" />
+    <Content Include="assets\img\about\1.jpg" />
     <Content Include="assets\img\backgrounds\1%402x.jpg" />
     <Content Include="assets\img\backgrounds\1.jpg" />
     <Content Include="assets\img\backgrounds\2.jpg" />
