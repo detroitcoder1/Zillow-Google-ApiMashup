@@ -23,6 +23,10 @@ textarea {
     max-width: 280px;
 }
 
+.textbox {
+   border-bottom:5px;
+}
+
 /* Set jpadding on default buttons */
 .btn-space {
     margin-top: 10px;

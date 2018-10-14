@@ -224,9 +224,6 @@
     <Content Include="assets\bootstrap\css\bootstrap.css" />
     <Content Include="assets\bootstrap\css\bootstrap.min.css" />
     <Content Include="assets\bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="assets\bootstrap\js\bootstrap.js" />
-    <Content Include="assets\bootstrap\js\bootstrap.min.js" />
-    <Content Include="assets\bootstrap\js\npm.js" />
     <Content Include="assets\css\animate.css" />
     <Content Include="assets\css\form-elements.css" />
     <Content Include="assets\css\media-queries.css" />
@@ -236,18 +233,12 @@
     <Content Include="assets\ico\apple-touch-icon-57-precomposed.png" />
     <Content Include="assets\ico\apple-touch-icon-72-precomposed.png" />
     <Content Include="assets\ico\favicon.png" />
+    <Content Include="assets\img\about\1.jpg" />
     <Content Include="assets\img\about\2.jpg" />
     <Content Include="assets\img\about\3.jpg" />
-    <Content Include="assets\img\about\1.jpg" />
-    <Content Include="assets\img\backgrounds\1%402x.jpg" />
     <Content Include="assets\img\backgrounds\1.jpg" />
     <Content Include="assets\img\backgrounds\2.jpg" />
     <Content Include="assets\img\backgrounds\3.jpg" />
-    <Content Include="assets\img\devices\pc.jpg" />
-    <Content Include="assets\img\devices\pc%402x.png" />
-    <Content Include="assets\img\devices\pc.png" />
-    <Content Include="assets\img\devices\pc2%402x.png" />
-    <Content Include="assets\img\devices\pc2.png" />
     <Content Include="assets\img\loading.gif" />
     <Content Include="assets\img\logo%402x.png" />
     <Content Include="assets\img\logo.png" />
@@ -256,7 +247,6 @@
     <Content Include="assets\img\testimonials\3.jpg" />
     <Content Include="assets\img\testimonials\4.jpg" />
     <Content Include="assets\img\testimonials\logo%402x.png" />
-    <Content Include="assets\js\GoogleStreetView.js" />
     <Content Include="assets\js\jquery-1.11.1.js" />
     <Content Include="assets\js\jquery-1.11.1.min.js" />
     <Content Include="assets\js\jquery.backstretch.js" />
@@ -352,9 +342,7 @@
     <Content Include="Views\CityNodes\Details.cshtml" />
     <Content Include="Views\CityNodes\Edit.cshtml" />
     <Content Include="Views\CityNodes\Index.cshtml" />
-    <Content Include="Views\CityNodes\Filter.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
-    <Content Include="Views\CityNodes\Details2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

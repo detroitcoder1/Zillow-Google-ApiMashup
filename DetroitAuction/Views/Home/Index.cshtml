@@ -1,6 +1,6 @@
-﻿
+﻿@model DetroitAuction.Models.RegisterViewModel
 @{
-    Layout = Layout = "~/Views/Shared/_LayoutHome.cshtml"; 
+    Layout = Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 <!-- Loader -->
 <div class="loader">
@@ -10,70 +10,63 @@
 <!-- Top content -->
 <div class="top-content">
 
-    <!-- Top menu -->
-    @*<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-            </div>
-            
-            <div class="collapse navbar-collapse" id="top-navbar-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="scroll-link" href="#features">The project</a></li>
-                    <li><a class="scroll-link" href="#how-it-works">How it'll work</a></li>
-                    <li><a class="scroll-link" href="#about-us">About</a></li>
-                    <li><a class="scroll-link" href="#testimonials">Testimonials</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>*@
 
     <div class="inner-bg">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-2 text">
-                    <h1 class="wow fadeInLeftBig">Wayne County Property Auction Coming <strong>Soon</strong></h1>
+                <div class="col-lg-12">
+                    <h1 class="wow fadeInLeftBig" style=" color: white; font-size: 40px;">Wayne County Property Auction Coming <strong>Soon</strong></h1>
+
+                    <span  class=" wow fadeInRightBig" style="color: white; font-size: 60px"> @ViewBag.Count</span>
+                    <p style="color: white;">Properties for sale</p>
                     <div class="description wow fadeInLeftBig">
                         <p>
-                            We are working very hard on the new version of our site. It will bring a lot of new features.
-                            Sign up from the form below and you'll be one of the first to know when the site is ready.
+                            Easiest way to search parcels for sale we include photo and panoramic street view, Estimated Current Value, Estimated High and Low Value, Estimated Rental Price and Maps
                         </p>
                     </div>
-                    <div class="timer wow fadeInUp">
-                        <div class="days-wrapper">
-                            <span class="days"></span> <br><span class="t-text">days</span>
-                        </div>
-                        <div class="hours-wrapper">
-                            <span class="hours"></span> <br><span class="t-text">hours</span>
-                        </div>
-                        <div class="minutes-wrapper">
-                            <span class="minutes"></span> <br><span class="t-text">minutes</span>
-                        </div>
-                        <div class="seconds-wrapper">
-                            <span class="seconds"></span> <br><span class="t-text">seconds</span>
-                        </div>
-                    </div>
-                    <div class="subscribe wow fadeInUp">
-                        <div class="form-inline">
-                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "CityNodes")'">Browse Properties for Sale</button>
-                        </div>
-                        <div class="success-message"></div>
-                        <div class="error-message"></div>
+                    <div id="timer">
+                        <ul class="row" id="countdown">
+                            <li>
+                                <span class="days">00</span>
+                                <p class="timeRefDays">days</p>
+                            </li>
+                            <li>
+                                <span class="hours">00</span>
+                                <p class="timeRefHours">hours</p>
+                            </li>
+                            <li>
+                                <span class="minutes">00</span>
+                                <p class="timeRefMinutes">minutes</p>
+                            </li>
+                            <li>
+                                <span class="seconds">00</span>
+                                <p class="timeRefSeconds">seconds</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+
+            </div>
+            <div class="subscribe wow fadeInUp">
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                   
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.Email, new { placeholder = "Enter your email..." })
+                            <button class="btn btn-primary" type="submit" value="Browse Properties for Sale">Browse Properties for Sale</button>
+                }
+
+                <div class="success-message"></div>
+                <div class="error-message"></div>
             </div>
         </div>
     </div>
 
 </div>
 
-<!-- About the new site -->
+<!--Features  -->
 <div class="features-container section-container">
     <div class="container">
         <div class="row">
@@ -134,8 +127,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 section-bottom-button wow fadeInUp">
-                <a class="btn btn-primary" href="https://www.waynecountytreasurermi.com/Home.aspx">Register With Wayne County</a>
+            <div class="form-inline wow fadeInUp">
+                <button class="btn btn-primary" href="https://www.waynecountytreasurermi.com/Home.aspx">Register With Wayne County</button>
             </div>
         </div>
     </div>
@@ -195,137 +188,19 @@
     </div>
 </div>
 
-<!-- Call to action -->
-@*<div class="call-to-action-container section-container section-container-image-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 call-to-action section-description wow fadeInLeftBig">
-                <h2>Call to action</h2>
-                <div class="divider-1 wow fadeInUp"><span></span></div>
-                <p>
-                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                    aliquip ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud.
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 section-bottom-button wow fadeInUp">
-                <a class="btn btn-link-1 scroll-link" href="#top-content">Subscribe Now</a>
-            </div>
-        </div>
-    </div>
-</div>*@
-<!-- Testimonials -->
-@*<div class="testimonials-container section-container section-container-gray-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 testimonials section-description wow fadeIn">
-                <h2>Our clients</h2>
-                <div class="divider-1 wow fadeInUp"><span></span></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-10 col-sm-offset-1 testimonial-list wow fadeInUp">
-                <div role="tabpanel">
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                            <div class="testimonial-image">
-                                <img src="~/assets/img/testimonials/1.jpg" alt="" data-at2x="~/assets/img/testimonials/1.jpg">
-                                <div class="testimonial-icon">
-                                    <span aria-hidden="true" class="typcn typcn-pin"></span>
-                                </div>
-                            </div>
-                            <div class="testimonial-text">
-                                <p>
-                                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
-                                    Lorem ipsum dolor sit amet, consectetur..."<br>
-                                    <a href="#">Lorem Ipsum, dolor.co.uk</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab2">
-                            <div class="testimonial-image">
-                                <img src="~/assets/img/testimonials/2.jpg" alt="" data-at2x="~/assets/img/testimonials/2.jpg">
-                                <div class="testimonial-icon">
-                                    <span aria-hidden="true" class="typcn typcn-pin"></span>
-                                </div>
-                            </div>
-                            <div class="testimonial-text">
-                                <p>
-                                    "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
-                                    ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                                    lobortis nisl ut aliquip ex ea commodo consequat..."<br>
-                                    <a href="#">Minim Veniam, nostrud.com</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab3">
-                            <div class="testimonial-image">
-                                <img src="~/assets/img/testimonials/3.jpg" alt="" data-at2x="~/assets/img/testimonials/3.jpg">
-                                <div class="testimonial-icon">
-                                    <span aria-hidden="true" class="typcn typcn-pin"></span>
-                                </div>
-                            </div>
-                            <div class="testimonial-text">
-                                <p>
-                                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
-                                    Lorem ipsum dolor sit amet, consectetur..."<br>
-                                    <a href="#">Lorem Ipsum, dolor.co.uk</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab4">
-                            <div class="testimonial-image">
-                                <img src="~/assets/img/testimonials/4.jpg" alt="" data-at2x="~/assets/img/testimonials/4.jpg">
-                                <div class="testimonial-icon">
-                                    <span aria-hidden="true" class="typcn typcn-pin"></span>
-                                </div>
-                            </div>
-                            <div class="testimonial-text">
-                                <p>
-                                    "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
-                                    ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                                    lobortis nisl ut aliquip ex ea commodo consequat..."<br>
-                                    <a href="#">Minim Veniam, nostrud.com</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active">
-                            <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab"></a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"></a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab"></a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab"></a>
-                        </li>
-                    </ul>
+
+<!-- Footer -->
+@*<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 footer-social">
+                    <a href="#"><span class="typcn typcn-social-facebook"></span></a>
+                    <a href="#"><span class="typcn typcn-social-dribbble"></span></a>
+                    <a href="#"><span class="typcn typcn-social-twitter"></span></a>
+                    <a href="#"><span class="typcn typcn-social-google-plus"></span></a>
+                    <a href="#"><span class="typcn typcn-social-instagram"></span></a>
+                    <a href="#"><span class="typcn typcn-social-pinterest"></span></a>
                 </div>
             </div>
         </div>
-    </div>
-</div>*@
-<!-- Footer -->
-@*<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 footer-social">
-                <a href="#"><span class="typcn typcn-social-facebook"></span></a>
-                <a href="#"><span class="typcn typcn-social-dribbble"></span></a>
-                <a href="#"><span class="typcn typcn-social-twitter"></span></a>
-                <a href="#"><span class="typcn typcn-social-google-plus"></span></a>
-                <a href="#"><span class="typcn typcn-social-instagram"></span></a>
-                <a href="#"><span class="typcn typcn-social-pinterest"></span></a>
-            </div>
-        </div>
-    </div>
-</footer>*@
+    </footer>*@

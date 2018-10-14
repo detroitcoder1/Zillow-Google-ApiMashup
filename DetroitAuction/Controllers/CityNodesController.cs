@@ -22,8 +22,11 @@ namespace Auction.Controllers
         // GET: CityNodes
         public ActionResult Index()
         {
-
+           
             var z = GetZillowModel();
+            var count = r.FindAll().Count();
+
+          
             return View(z.ToList());
         }
 
@@ -71,7 +74,7 @@ namespace Auction.Controllers
             //var cityNodes = r.FindAll().ToList();
             //var cityNode = cityNodes.Where(x => x.CityNodeId == id).FirstOrDefault();
             r.Remove(_id);
-            
+
             return RedirectToAction("Index");
         }
 
@@ -91,23 +94,58 @@ namespace Auction.Controllers
                 {
                     ZillowModels.Add(zEstimate);
                 }
-                
+
             }
             return ZillowModels;
         }
 
         [HttpPost]
-        public ActionResult Filter(string ZipCode)
+        public ActionResult FilterbyZip(string ZipCode)
         {
             if (ZipCode == null)
             {
                 return HttpNotFound();
             }
-            var houses = GetZillowModel().Where(x=> x.ZipCode == ZipCode);
-           
-            return View( houses.ToList());
+            var houses = GetZillowModel().Where(x => x.ZipCode == ZipCode);
+
+            return View("Index", houses.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult FilterbyStreet(string Street)
+        {
+            if (Street == null)
+            {
+                return HttpNotFound();
+            }
+            var houses = GetZillowModel().Where(x => x.Street.ToLower().Contains(Street.ToLower()));
+
+            return View("Index", houses.ToList());
+
+
+        }
+
+        [HttpPost]
+        public ActionResult SortHigh2Low()
+        {
+
+            var houses = GetZillowModel().OrderByDescending(x => x.Estimate);
+
+            return View("Index", houses.ToList());
+
+
         }
 
 
+        [HttpPost]
+        public ActionResult SortLow2High(List<ZillowEstimate> model)
+        {
+
+            var houses = model.OrderByDescending(x => x.Estimate);
+
+            return View("Index", houses.ToList());
+
+
+        }
     }
 }

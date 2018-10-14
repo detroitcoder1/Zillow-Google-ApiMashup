@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<Auction.Models.ZillowModel.ZillowEstimate>
 
-
 @{
-    ViewBag.Title = "City of Detroit Auction";
+    ViewBag.Title = "Wayne County Auction";
 
 }
 
@@ -10,15 +9,26 @@
 <h2>City of Detroit Auction Mashup</h2>
 
 <div class=" row">
-    @using (Html.BeginForm("Filter", "CityNodes", FormMethod.Post))
+    @using (Html.BeginForm("FilterbyZip", "CityNodes", FormMethod.Post))
     {
         @*@Html.DropDownList("mytype", EnumHelper.GetSelectList(typeof(DetroitAuction.Models.ItemTypes)), "SelectType")*@
         <h3>Search by ZipCode</h3>
-        <span>
+        @Html.DisplayNameFor(model => model.ZipCode)
+        <div class="textbox">
             @Html.TextBox("ZipCode")
             <input type="submit" value="Search" class="btn btn-default" />
-            <br/>
-        </span>
+        </div>
+
+    }
+
+    @using (Html.BeginForm("FilterbyStreet", "CityNodes", FormMethod.Post))
+    {
+        <h3>Search by Street Name</h3>
+        @Html.DisplayNameFor(model => model.Street)
+        <div class="textbox">
+            @Html.TextBox("Street")
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
 
     }
 </div>
