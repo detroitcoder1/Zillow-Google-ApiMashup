@@ -236,7 +236,7 @@
     <Content Include="assets\img\about\1.jpg" />
     <Content Include="assets\img\about\2.jpg" />
     <Content Include="assets\img\about\3.jpg" />
-    <Content Include="assets\img\backgrounds\1.jpg" />
+    <Content Include="assets\img\backgrounds\home.jpg" />
     <Content Include="assets\img\backgrounds\2.jpg" />
     <Content Include="assets\img\backgrounds\3.jpg" />
     <Content Include="assets\img\loading.gif" />
@@ -266,6 +266,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\City.csv" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

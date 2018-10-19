@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DetroitAuction.Models;
+using Microsoft.Owin;
 
 namespace DetroitAuction.Controllers
 {
@@ -134,6 +135,16 @@ namespace DetroitAuction.Controllers
             }
         }
 
+        //public bool IsAuthenticated
+        //{
+        //    get
+        //    {
+        //        return this.User != null &&
+        //               this.User.Identity.GetUserName != null &&
+        //               this.User.Identity.IsAuthenticated;
+        //    }
+        //}
+
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -152,9 +163,18 @@ namespace DetroitAuction.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await UserManager.CreateAsync(user);
+
+                if (User.Identity.GetUserId()== model.Email)
+                {
+                    return RedirectToAction("Index", "CityNodes");
+
+                }
+
                 if (result.Succeeded)
                 {
+
+                   
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:true);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -163,8 +183,11 @@ namespace DetroitAuction.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "CityNodes");
                 }
+
+
+
                 AddErrors(result);
             }
 
@@ -395,6 +418,9 @@ namespace DetroitAuction.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
+
+
+
 
         //
         // GET: /Account/ExternalLoginFailure

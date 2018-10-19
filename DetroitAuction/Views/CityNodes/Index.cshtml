@@ -52,7 +52,15 @@
             Estimated Value
         </th>
 
-        <th>High Value</th>
+        <th>
+            @using (Html.BeginForm("SortHigh2Low", "CityNodes", FormMethod.Post))
+            {
+              
+              
+                    <input type="submit" value="Search" class="btn btn-default" />
+
+            }
+        </th>
 
         <th>Low Value</th>
         <th></th>
@@ -64,7 +72,9 @@
             <td>
 
                 @*<img src=@Html.DisplayFor(modelItem => item.GoogleUrl) alt=" @Html.DisplayFor(modelItem => item.Street)" />*@
-                <div id="myImg"><img src="@Url.Content(item.GoogleUrl)" alt="@Html.DisplayFor(modelItem => item.Street)"></div>
+                @*<div id="myImg"><img src="@Url.Content(item.GoogleUrl)" alt="@Html.DisplayFor(modelItem => item.Street)"></div>*@
+                <div id="myImg"><img src="@Html.Raw(item.GoogleUrl)" alt="@Html.DisplayFor(modelItem => item.Street)"></div>
+
 
             </td>
             <td>

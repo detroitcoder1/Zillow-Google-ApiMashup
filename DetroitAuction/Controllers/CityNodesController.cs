@@ -23,7 +23,7 @@ namespace Auction.Controllers
         public ActionResult Index()
         {
            
-            var z = GetZillowModel();
+            var z = GetZillowModel().Take(5);
             var count = r.FindAll().Count();
 
           

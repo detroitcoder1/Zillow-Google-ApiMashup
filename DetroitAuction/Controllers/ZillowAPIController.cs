@@ -43,29 +43,45 @@ namespace Auction.Controllers
             z.ReturnCodeMessage = root.SelectSingleNode("//message/text").InnerText;
 
             if (z.ReturnCode == 0)
-            {
-                z.ZillowId = int.Parse(root.SelectSingleNode("//response/results/result/zpid").InnerText);
-                z.LinktoMap = root.SelectSingleNode("//response/results/result/links/mapthishome").InnerText;
-                z.LinktoHomeDetails = root.SelectSingleNode("//response/results/result/links/homedetails").InnerText;
-                //z.LinktoGraphsAndData = root.SelectSingleNode("//response/results/result/links/graphsanddata").InnerText;
-                z.LinktoComparables = root.SelectSingleNode("//response/results/result/links/comparables").InnerText;
-                z.Estimate = decimal.Parse(root.SelectSingleNode("//response/results/result/zestimate/amount").InnerText);
-                z.LastUpdated = DateTime.Parse(root.SelectSingleNode("//response/results/result/zestimate/last-updated").InnerText);
-                z.ValueChange = decimal.Parse(root.SelectSingleNode("//response/results/result/zestimate/valueChange").InnerText);
-                z.ValueChangeDurationInDays = int.Parse(root.SelectSingleNode("//response/results/result/zestimate/valueChange").Attributes["duration"].Value);
-                z.ValueRangeLow = decimal.Parse(root.SelectSingleNode("//response/results/result/zestimate/valuationRange/low").InnerText);
-                z.ValueRangeHigh = decimal.Parse(root.SelectSingleNode("//response/results/result/zestimate/valuationRange/high").InnerText);
-                z.Street = root.SelectSingleNode("//response/results/result/address/street").InnerText;
-                z.City = root.SelectSingleNode("//response/results/result/address/city").InnerText;
-                z.State = root.SelectSingleNode("//response/results/result/address/state").InnerText;
-                z.ZipCode = root.SelectSingleNode("//response/results/result/address/zipcode").InnerText;
-                z.Latitude = decimal.Parse(root.SelectSingleNode("//response/results/result/address/latitude").InnerText);
-                z.Longitude = decimal.Parse(root.SelectSingleNode("//response/results/result/address/longitude").InnerText);
-                //url for google image
-                z.GoogleUrl = String.Format("https://maps.googleapis.com/maps/api/streetview?size=100x100&location={1},{2}&fov=90&heading=235&pitch=10&key={0}", googleApiId, z.Latitude, z.Longitude);
-            }
-            Response.Close();
+                try
+                {
+                    z.ZillowId = int.Parse(root.SelectSingleNode("//response/results/result/zpid").InnerText);
+                    z.LinktoMap = root.SelectSingleNode("//response/results/result/links/mapthishome").InnerText;
+                    z.LinktoHomeDetails = root.SelectSingleNode("//response/results/result/links/homedetails").InnerText;
+                    //z.LinktoGraphsAndData = root.SelectSingleNode("//response/results/result/links/graphsanddata").InnerText;
+                    z.LinktoComparables = root.SelectSingleNode("//response/results/result/links/comparables").InnerText;
+                    z.Estimate = decimal.Parse(root.SelectSingleNode("//response/results/result/zestimate/amount").InnerText);
+                    z.LastUpdated = DateTime.Parse(root.SelectSingleNode("//response/results/result/zestimate/last-updated").InnerText);
+                    z.ValueChange = decimal.Parse(root.SelectSingleNode("//response/results/result/zestimate/valueChange").InnerText);
+                    z.ValueChangeDurationInDays = int.Parse(root.SelectSingleNode("//response/results/result/zestimate/valueChange").Attributes["duration"].Value);
+                    z.ValueRangeLow = decimal.Parse(root.SelectSingleNode("//response/results/result/zestimate/valuationRange/low").InnerText);
+                    z.ValueRangeHigh = decimal.Parse(root.SelectSingleNode("//response/results/result/zestimate/valuationRange/high").InnerText);
+                    z.Street = root.SelectSingleNode("//response/results/result/address/street").InnerText;
+                    z.City = root.SelectSingleNode("//response/results/result/address/city").InnerText;
+                    z.State = root.SelectSingleNode("//response/results/result/address/state").InnerText;
+                    z.ZipCode = root.SelectSingleNode("//response/results/result/address/zipcode").InnerText;
+                    z.Latitude = decimal.Parse(root.SelectSingleNode("//response/results/result/address/latitude").InnerText);
+                    z.Longitude = decimal.Parse(root.SelectSingleNode("//response/results/result/address/longitude").InnerText);
+                    //url for google image
+                    z.GoogleUrl = String.Format("https://maps.googleapis.com/maps/api/streetview?size=100x100&location={1},{2}&fov=90&heading=235&pitch=10&key={0}", googleApiId, z.Latitude, z.Longitude);
+                }
+
+                
+                catch (Exception ex)
+                {
+
+                    ex.ToString();
+                }
+
+            finally
+                {
+                    Response.Close();
+                     
+
+                }
             return z;
+
+
         }
 
         

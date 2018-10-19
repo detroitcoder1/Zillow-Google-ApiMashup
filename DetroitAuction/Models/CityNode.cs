@@ -19,8 +19,12 @@ namespace Auction.Models
         public string City { get; set; }
         public int ZipCode { get; set; }
         public string LegalDescript { get; set; }
-       
-    
+        public string SEV { get; set; }
+        public string Status { get; set; }
+        public string ClosingDate { get; set; }
+
+
+
 
 
 
@@ -34,6 +38,9 @@ namespace Auction.Models
             CityValues.City = (values[3]);
             CityValues.ZipCode = Convert.ToInt32(values[4]);
             CityValues.LegalDescript = (values[5]);
+            CityValues.SEV = (values[6]);
+            CityValues.Status = (values[7]);
+            CityValues.ClosingDate = (values[8]);
 
             return CityValues;
         }

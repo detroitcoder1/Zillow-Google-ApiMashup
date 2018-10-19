@@ -14,7 +14,7 @@ namespace Auction.Repository
 
     public class AddressRepository : IRepository
     {
-        string addressFile = "C:\\Users\\Curt\\source\\repos\\Auction\\Auction\\Content\\CityCSV.csv";
+        string addressFile = "C:\\Users\\Curt\\source\\repos\\AuctionSite\\DetroitAuction\\Content\\City.csv";
 
         public IEnumerable<CityNode> FindAll()
         {
