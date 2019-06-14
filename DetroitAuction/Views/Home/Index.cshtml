@@ -54,7 +54,7 @@
                    
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary("", new { @class = "text-danger" })
-                        @Html.TextBoxFor(m => m.Email, new { placeholder = "Enter your email..." })
+                        @Html.TextBoxFor(m => m.Email, new { placeholder = "Enter your email address" })
                             <button class="btn btn-primary" type="submit" value="Browse Properties for Sale">Browse Properties for Sale</button>
                 }
 
