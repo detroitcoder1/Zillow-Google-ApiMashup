@@ -129,7 +129,7 @@ namespace Auction.Controllers
         public ActionResult SortHigh2Low()
         {
 
-            var houses = GetZillowModel().OrderByDescending(x => x.Estimate);
+            var houses = GetZillowModel().OrderByDescending(x => x.City);
 
             return View("Index", houses.ToList());
 
